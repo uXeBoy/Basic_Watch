@@ -69,7 +69,7 @@ int hour;
 int minute;
 int second;
 
-// Button press tones 
+// Button press tones
 int KeyPressTone = 15;  // enabled
 const int KeyPressToneTime = 15;  // short chirp 10 ms
 // Hourly beeps
@@ -100,6 +100,7 @@ void setup()
 
   // Clear the buffer.
   display.clearDisplay();
+  display.setTextColor(WHITE);
 
   // Set the watch time (when uploading sketch)
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
@@ -163,8 +164,8 @@ void loop()
 
     delay(debounce);
   }
-  
-  if (digitalRead(Button2) == 0) // UP 
+
+  if (digitalRead(Button2) == 0) // UP
   {
     if (KeyPressTone > 0)
     {
@@ -258,11 +259,10 @@ void Watchface()
   // Screen stuff
   display.clearDisplay();
   display.setTextSize(4);
-  display.setTextColor(WHITE);
 
   DateTime now = rtc.now();
   currentMillis = millis();
-  
+
   if (previousSecond != now.second())
   {
     deciSecond = 0;
@@ -273,7 +273,7 @@ void Watchface()
     deciSecond++;
     previousMillis = currentMillis;
   }
-  
+
   sprintf(secondBuffer, "%02u.%u", now.second(), deciSecond);
 
   if (now.second() % 2) sprintf(timeBuffer, "%02u:%02u", now.hour(), now.minute());
@@ -281,7 +281,7 @@ void Watchface()
 
   // Show Time
   display.setCursor(4, 15);
-  display.print(timeBuffer);  
+  display.print(timeBuffer);
   display.setTextSize(1);
   display.setCursor(50, 55);
   display.print(secondBuffer);
@@ -476,7 +476,7 @@ void ExecuteAction(int option)
       }
 
       TonesMenu();
-    }    
+    }
   }
 }
 
@@ -597,10 +597,10 @@ void TonesMenu()
   // display.print("up");
   // display.setCursor(115, 57);
   // display.print("dn");
- 
+
   display.setCursor(5, 10);
   display.print("Exit");
-  
+
   display.setCursor(5, 18);
   display.print("Key Tones   :");
   display.setCursor(85, 18);
@@ -616,7 +616,7 @@ void TonesMenu()
   display.setCursor(5, 26);
   display.print("Hourly Tones:");
   display.setCursor(85, 26);
-  
+
   if (HourlyTone > 0)
   {
     display.print("On");

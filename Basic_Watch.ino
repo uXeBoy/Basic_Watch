@@ -274,7 +274,7 @@ void Watchface()
     previousMillis = currentMillis;
   }
   
-  sprintf(secondBuffer, "%02u.%01u", now.second(), deciSecond);
+  sprintf(secondBuffer, "%02u.%u", now.second(), deciSecond);
 
   if (now.second() % 2) sprintf(timeBuffer, "%02u:%02u", now.hour(), now.minute());
   else                  sprintf(timeBuffer, "%02u %02u", now.hour(), now.minute());
@@ -644,4 +644,3 @@ void TonesMenu()
 
   display.display();
 }
-
